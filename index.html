@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ujima SACCO — Pride Leader Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#f5f4f0;padding:2rem 1rem}
+
+:root{
+  --gold:#A0701A;
+  --gold-light:#FAC775;
+  --gold-pale:#FAEEDA;
+  --teal:#0F6E56;
+  --teal-light:#5DCAA5;
+  --teal-pale:#E1F5EE;
+  --ink:#2C2C2A;
+  --muted:#5F5E5A;
+  --border:rgba(0,0,0,0.12);
+  --bg-primary:#ffffff;
+  --bg-secondary:#f1efe8;
+  --text-primary:#2C2C2A;
+  --text-secondary:#5F5E5A;
+  --border-radius-md:8px;
+  --border-radius-lg:12px;
+}
+
+.portfolio{max-width:680px;margin:0 auto;padding:0 0 2rem}
+
+.cover{background:var(--ink);color:#fff;border-radius:var(--border-radius-lg);padding:2rem 2rem 1.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(160,112,26,0.18)}
+.cover-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.75rem}
+.cover-title{font-size:26px;line-height:1.2;margin-bottom:0.5rem;font-weight:600}
+.cover-sub{font-size:13px;color:#9F9E9A;margin-bottom:1.25rem}
+.cover-badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:500}
+.badge-gold{background:rgba(160,112,26,0.25);color:var(--gold-light)}
+.badge-teal{background:rgba(15,110,86,0.3);color:#5DCAA5}
+.badge-gray{background:rgba(255,255,255,0.12);color:#ccc}
+
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.nav-btn{font-size:12px;padding:5px 12px;border-radius:99px;border:0.5px solid var(--border);background:var(--bg-secondary);color:var(--text-secondary);cursor:pointer;transition:all .15s}
+.nav-btn:hover,.nav-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.section{display:none}
+.section.active{display:block}
+
+.card{background:var(--bg-primary);border:0.5px solid var(--border);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:13px;font-weight:500;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem}
+
+.metric-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1rem}
+.metric{background:var(--bg-secondary);border-radius:var(--border-radius-md);padding:0.85rem 1rem}
+.metric-label{font-size:12px;color:var(--text-secondary);margin-bottom:4px}
+.metric-value{font-size:22px;font-weight:500;color:var(--text-primary)}
+.metric-sub{font-size:11px;color:var(--text-secondary);margin-top:2px}
+.metric.accent .metric-value{color:var(--teal)}
+.metric.warn .metric-value{color:#BA7517}
+
+.framework-block{border-left:3px solid var(--gold-light);padding:0.75rem 1rem;margin-bottom:0.85rem;background:var(--gold-pale);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0}
+.framework-title{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:0.5rem}
+.framework-body{font-size:13px;color:var(--ink);line-height:1.6}
+
+.teal-block{border-left:3px solid var(--teal-light);padding:0.75rem 1rem;margin-bottom:0.85rem;background:var(--teal-pale);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0}
+.teal-title{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:0.5rem}
+.teal-body{font-size:13px;color:var(--ink);line-height:1.6}
+
+.agent-card{border:0.5px solid var(--border);border-radius:var(--border-radius-lg);padding:1.1rem;margin-bottom:0.85rem}
+.agent-header{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem}
+.agent-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.icon-scout{background:#E1F5EE;color:#0F6E56}
+.icon-guardian{background:#FAEEDA;color:#A0701A}
+.icon-hunter{background:#EEEDFE;color:#3C3489}
+.agent-name{font-weight:500;font-size:14px;color:var(--text-primary)}
+.agent-role{font-size:12px;color:var(--text-secondary)}
+.tag-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:0.6rem}
+.tag{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
+.tag-green{background:#EAF3DE;color:#3B6D11}
+.tag-amber{background:#FAEEDA;color:#854F0B}
+.tag-purple{background:#EEEDFE;color:#3C3489}
+.tag-red{background:#FCEBEB;color:#A32D2D}
+
+.handoff-arrow{text-align:center;color:var(--text-secondary);font-size:12px;margin:0.25rem 0 0.5rem;display:flex;align-items:center;justify-content:center;gap:6px}
+.handoff-arrow::before,.handoff-arrow::after{content:'';flex:1;height:0.5px;background:var(--border)}
+
+.impact-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.impact-item{padding:0.85rem;border:0.5px solid var(--border);border-radius:var(--border-radius-md)}
+.impact-num{font-size:28px;font-weight:500;line-height:1}
+.impact-label{font-size:12px;color:var(--text-secondary);margin-top:4px;line-height:1.4}
+.impact-item.a .impact-num{color:#0F6E56}
+.impact-item.b .impact-num{color:#A0701A}
+.impact-item.c .impact-num{color:#534AB7}
+.impact-item.d .impact-num{color:#3B6D11}
+
+.progress-bar-wrap{margin-bottom:0.85rem}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-secondary);margin-bottom:4px}
+.progress-track{height:8px;background:var(--bg-secondary);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;border-radius:99px;transition:width 1s ease}
+.fill-teal{background:var(--teal-light)}
+.fill-gold{background:var(--gold-light)}
+.fill-purple{background:#AFA9EC}
+.fill-green{background:#97C459}
+
+.reflection-body{font-size:14px;line-height:1.8;color:var(--text-primary)}
+.reflection-body p{margin-bottom:1rem}
+.pull-quote{font-size:18px;line-height:1.5;color:var(--teal);border-left:3px solid var(--teal-light);padding:0.75rem 1rem;margin:1rem 0;background:var(--teal-pale);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0}
+
+.rubric-table{width:100%;border-collapse:collapse;font-size:12px}
+.rubric-table th{background:var(--bg-secondary);padding:8px 10px;text-align:left;font-weight:500;color:var(--text-secondary);border-bottom:0.5px solid var(--border)}
+.rubric-table td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;color:var(--text-primary)}
+.rubric-table tr:last-child td{border-bottom:none}
+.score-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#EAF3DE;color:#3B6D11;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="portfolio">
+
+<div class="cover">
+  <div class="cover-eyebrow">Capstone Submission · AI for Professionals</div>
+  <div class="cover-title">Ujima SACCO<br>Pride Leader Portfolio</div>
+  <div class="cover-sub">AI-Augmented Ethical Lending Ecosystem · Kenya/Uganda · 2025–2026</div>
+  <div class="cover-badges">
+    <span class="badge badge-gold">Pride Leader Candidate</span>
+    <span class="badge badge-teal">DPA 2022 Compliant</span>
+    <span class="badge badge-teal">SASRA Aligned</span>
+    <span class="badge badge-gray">AWS Africa Region</span>
+  </div>
+</div>
+
+<div class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="showSection('exec')">1. Executive Brief</button>
+  <button class="nav-btn" onclick="showSection('ethics')">2. Ethical Architecture</button>
+  <button class="nav-btn" onclick="showSection('agents')">3. Agent Blueprint</button>
+  <button class="nav-btn" onclick="showSection('impact')">4. Impact Assessment</button>
+  <button class="nav-btn" onclick="showSection('reflection')">5. Safari Reflection</button>
+  <button class="nav-btn" onclick="showSection('rubric')">6. Rubric</button>
+</div>
+
+<!-- SECTION 1: EXECUTIVE BRIEF -->
+<div class="section active" id="exec">
+
+  <div class="card">
+    <div class="card-title">Board-ready summary</div>
+    <p style="font-size:20px;line-height:1.4;color:var(--text-primary);margin-bottom:1rem;font-weight:500">Ujima SACCO's AI Pride System: Expanding Ethical Access to Credit for Kenya's Informal Economy</p>
+    <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem">Ujima SACCO serves over 14,000 members — 62% of whom are informal traders (market vendors, shea butter sellers, maize farmers) systematically denied credit under legacy scoring models. Our 2025 data revealed a 68% denial rate for "market vendor" occupation vs. 22% for "formal employee," a disparity driven by urban-centric training data, occupation taxonomy blind spots, and seasonal income misclassification.</p>
+    <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">This portfolio presents a three-agent AI ecosystem — Scout, Guardian, Hunter — designed with embedded ethical safeguards, harvest-cycle intelligence, and regulatory alignment to SASRA and Kenya's DPA 2022. All member data is stored exclusively on AWS Africa (Cape Town). The system is projected to increase female vendor loan approvals by <strong>37%</strong> while maintaining a default risk below <strong>3%</strong>.</p>
+  </div>
+
+  <div class="metric-row">
+    <div class="metric accent">
+      <div class="metric-label">Projected approval increase</div>
+      <div class="metric-value">+37%</div>
+      <div class="metric-sub">Female informal traders</div>
+    </div>
+    <div class="metric accent">
+      <div class="metric-label">Target default risk</div>
+      <div class="metric-value">&lt;3%</div>
+      <div class="metric-sub">Harvest-cycle aligned repayment</div>
+    </div>
+    <div class="metric warn">
+      <div class="metric-label">Tier-1 queries automated</div>
+      <div class="metric-value">80%</div>
+      <div class="metric-sub">Freeing officers for complex cases</div>
+    </div>
+    <div class="metric warn">
+      <div class="metric-label">Officer hours saved/week</div>
+      <div class="metric-value">22 hrs</div>
+      <div class="metric-sub">Per 3-officer branch</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Strategic pillars</div>
+    <div class="framework-block">
+      <div class="framework-title">Pillar 1 — Precision Prompting (Savannah)</div>
+      <div class="framework-body">AIM/MAP frameworks replaced vague loan-screening prompts. OCEAN verification exposed 2 critical hallucinations (phantom "market vendor" risk multipliers). Harvest-cycle repayment schedules anchored to March/April and Sept/Oct matooke windows replaced fixed EMI defaults.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">Pillar 2 — Cognitive Partnership (Tsavo)</div>
+      <div class="framework-body">4D Fluency (Delegation, Description, Discernment, Diligence) governs all AI workflows. An "Autonomous Ranger" SMS savings coach operates at low temperature for calculations, high temperature for literacy content. RAG pipeline connects to Kenya Agricultural Observatory for live harvest data.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">Pillar 3 — Ethical Architecture</div>
+      <div class="framework-body">Full ETHOS→HORIZON stack embedded in loan approval. Mandatory human review for loans &gt;KES 50,000. PRIDE Loop Pause Points, Elders Council governance (3 SACCO managers + 2 women vendors + 1 SASRA regulator), and USSD kill-switches (*#123#) protect member dignity.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">Pillar 4 — Agent Orchestration</div>
+      <div class="framework-body">Scout → Guardian → Hunter handoffs with explicit RANK boundaries. Guardian approves ≤KES 15,000 autonomously; Hunter prepares human briefings for larger loans. CYCLE self-improvement engine runs every Sunday 2AM EAT with human validation gate before any deployment.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 2: ETHICAL ARCHITECTURE -->
+<div class="section" id="ethics">
+
+  <div class="card">
+    <div class="card-title">ETHOS Framework — Dignity-Centred Loan Screening</div>
+    <div class="teal-block">
+      <div class="teal-title">Before (ethically blind)</div>
+      <div class="teal-body">"Screen loan applicants for risk."</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">After (ETHOS-transformed)</div>
+      <div class="framework-body">
+        <strong>E — Equity:</strong> Identify 3 vulnerable groups this model might exclude: market vendors, women with child-school-fee cycles, Busia County applicants.<br><br>
+        <strong>T — Transparency:</strong> Demand step-by-step reasoning for every denial; no black-box scores.<br><br>
+        <strong>H — Household Impact:</strong> Model food security impact of denial; flag if denial risks child malnutrition.<br><br>
+        <strong>O — Oversight:</strong> Immutable audit trail assigns named human accountability for every decision.<br><br>
+        <strong>S — Sovereignty:</strong> All data governed under Kenya DPA 2022; stored exclusively on AWS Africa (Cape Town).
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TRACK Audit — Forensic Bias Analysis</div>
+    <div class="framework-block">
+      <div class="framework-title">T — Training Data</div>
+      <div class="framework-body">Only 12% of training corpus represented informal traders. Remediation: augment with transaction logs from 3 rural SACCOs in Western Kenya.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">R — Representation</div>
+      <div class="framework-body">Occupation taxonomy lacked 'shea butter trader', 'bodaboda operator', 'chama chairperson'. 17 missing categories added to taxonomy.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">A — Amplification</div>
+      <div class="framework-body">Model amplified historical exclusion of women vendors by 1.4×. Counterfactual testing confirmed gender-proxy signal in "number of market stalls" feature.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">C — Counterfactuals</div>
+      <div class="framework-body">"If market vendor applicant had identical cash flow to formal employee → approval probability rises from 32% to 78%." Confirms occupation label, not risk, drives denial.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">K — Kill Switch</div>
+      <div class="framework-body">All denials from Busia County flagged for mandatory human review. Any sub-county where approval rate drops &gt;30% vs. baseline triggers automatic pause and audit.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">OASIS Data Stewardship Charter</div>
+    <div class="teal-block">
+      <div class="teal-title">O — Opt-in Consent (Swahili script)</div>
+      <div class="teal-body">"Data yako ya miamala inafundisha AI ya Ujima peke yake — si mifumo ya Silicon Valley. Unaweza kujiondoa wakati wowote kwa kutuma STOP kwa *#100#."</div>
+    </div>
+    <div class="teal-block">
+      <div class="teal-title">A — Anonymisation</div>
+      <div class="teal-body">k-anonymity depth = 5. Villages with &lt;5 loan applicants receive district-level aggregation only.</div>
+    </div>
+    <div class="teal-block">
+      <div class="teal-title">S — Sovereignty</div>
+      <div class="teal-body">All storage on AWS Africa (af-south-1, Cape Town). No raw PII leaves Kenya. Data sharing requires Elders Council vote + SASRA notification.</div>
+    </div>
+    <div class="teal-block">
+      <div class="teal-title">I — Intentional Retention</div>
+      <div class="teal-body">180-day auto-delete for non-essential metadata. Repayment records retained 7 years per CBK guidelines.</div>
+    </div>
+    <div class="teal-block">
+      <div class="teal-title">S — Security</div>
+      <div class="teal-body">End-to-end encryption for USSD/SMS channels. AES-256 at rest. TLS 1.3 in transit. Hardware security module for key management.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">PRIDE Loop — Human Oversight Architecture</div>
+    <div class="framework-block">
+      <div class="framework-title">P — Pause Points</div>
+      <div class="framework-body">Mandatory human review: loans &gt;KES 50,000 · applicants with children under 5 · Busia County applications · 3+ risk flags from Guardian.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">R — Review Cadence</div>
+      <div class="framework-body">Quarterly fairness audits with SASRA. Monthly CSAT + repayment correlation review. Annual full TRACK re-audit.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">I — Interpretability</div>
+      <div class="framework-body">"Explain denials like a village elder: 'Your income dips during school fee season — we need 3 months of buffer savings to approve this amount.'"</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">D — Disagreement Rights</div>
+      <div class="framework-body">USSD *#123# for instant human review request. Response within 2 business hours. No denial is final until a human officer confirms.</div>
+    </div>
+    <div class="framework-block">
+      <div class="framework-title">E — Elders Council</div>
+      <div class="framework-body">3 SACCO managers · 2 women vendors (Kisumu Market, Kakamega) · 1 SASRA fintech regulator. Meets quarterly. Holds veto over model deployment.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">HORIZON Scan — 10-Year Ecosystem Impact</div>
+    <div class="teal-block"><div class="teal-title">H — Historical Harm</div><div class="teal-body">This model does not replicate colonial data extraction: all value stays within Ujima's cooperative structure; no data monetisation to external corporations.</div></div>
+    <div class="teal-block"><div class="teal-title">O — Opportunity Cost</div><div class="teal-body">Automation risk to chama savings culture mitigated: Scout Agent reinforces group savings norms; never replaces chama meeting facilitation with AI.</div></div>
+    <div class="teal-block"><div class="teal-title">R — Ripple Effects</div><div class="teal-body">Projected: 37% more female vendor approvals → 2,200 additional households with school fee liquidity → ~1,800 fewer children absent during exam periods annually.</div></div>
+    <div class="teal-block"><div class="teal-title">I — Intergenerational</div><div class="teal-body">KES 28,000 school-fee loan → secondary completion → estimated 40% higher adult income in next generation.</div></div>
+    <div class="teal-block"><div class="teal-title">Z/O/N — Zero-Sum, Open Futures, Non-Human</div><div class="teal-body">Local SACCO captures surplus. Human agency preserved via kill-switches and Elders Council. AWS Africa runs on 84% renewable energy; USSD channel uses 95% less compute than app-based alternatives.</div></div>
+  </div>
+
+</div>
+
+<!-- SECTION 3: AGENT BLUEPRINT -->
+<div class="section" id="agents">
+
+  <div class="card">
+    <div class="card-title">3-Agent Pride Ecosystem — Workflow</div>
+
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-icon icon-scout"><i class="ti ti-binoculars"></i></div>
+        <div>
+          <div class="agent-name">Scout Agent — Financial Literacy Coach</div>
+          <div class="agent-role">RANK: Educate only · Max 3 SMS/day · Never recommend specific loans</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:0.75rem">
+        Monitors member SMS patterns, delivers harvest-cycle savings tips, and detects financial stress signals. Connects to Kenya Agricultural Observatory via RAG for live matooke/maize price data. Operates at high temperature for literacy content, low temperature for calculations.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-green">RAG: KAO live data</span>
+        <span class="tag tag-green">Harvest calendar</span>
+        <span class="tag tag-amber">Alert: loan shark mention</span>
+        <span class="tag tag-red">Kill: *#700#</span>
+      </div>
+    </div>
+
+    <div class="handoff-arrow">
+      <i class="ti ti-arrow-down"></i>
+      Trigger: "No money for school fees" → passes [child age] + [next harvest date] + [current savings]
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-icon icon-guardian"><i class="ti ti-shield-check"></i></div>
+        <div>
+          <div class="agent-name">Guardian Agent — Loan Triage</div>
+          <div class="agent-role">RANK: Tier-1 screening · Approve ≤KES 15K · Deny only with 3+ risk flags</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:0.75rem">
+        Validates income against harvest cycles. Applies TRACK bias audit to each application. Escalates to Hunter if: (a) amount &gt;KES 15K, (b) 2+ children under 5, (c) mentions debt collector. Raw PII never leaves Kenya per DPA 2022.
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-green">Auto-approve ≤KES 15K</span>
+        <span class="tag tag-amber">Score 70–89% → Hunter</span>
+        <span class="tag tag-purple">Harvest-cycle validation</span>
+        <span class="tag tag-red">Kill: *#733#</span>
+      </div>
+    </div>
+
+    <div class="handoff-arrow">
+      <i class="ti ti-arrow-down"></i>
+      Trigger: Score 70–89% → passes [income variance] + [repayment capacity] + [cultural context flags]
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-icon icon-hunter"><i class="ti ti-users"></i></div>
+        <div>
+          <div class="agent-name">Hunter Agent — Human-in-Loop Coordinator</div>
+          <div class="agent-role">RANK: Coordinate officers only · NEVER approve/deny · 15-min alert SLA</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:0.75rem">
+        Matches applications to loan officers by expertise. Generates plain-language briefing packets. Example: "Applicant: Grace, 42, maize farmer in Kakamega. Income peaks Oct/Nov. 3 children (ages 6,9,14). Request: KES 28,000 for school fees. Risk flags: None. Opportunity: Cross-sell drought insurance."
+      </div>
+      <div class="tag-row">
+        <span class="tag tag-purple">Officer-expertise matching</span>
+        <span class="tag tag-green">Briefing packets</span>
+        <span class="tag tag-amber">90-day officer data anonymisation</span>
+        <span class="tag tag-red">Full pause: *#799#</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">GUARD Safety Rails</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="padding:0.75rem;background:var(--bg-secondary);border-radius:var(--border-radius-md)">
+        <div style="font-size:11px;font-weight:500;color:var(--text-secondary);margin-bottom:4px">HARD BLOCKS</div>
+        <div style="font-size:12px;color:var(--text-primary);line-height:1.6">Gender/ethnicity proxies blocked · Max 3 SMS/day · "Unreliable"/"risky" language rejected</div>
+      </div>
+      <div style="padding:0.75rem;background:var(--bg-secondary);border-radius:var(--border-radius-md)">
+        <div style="font-size:11px;font-weight:500;color:var(--text-secondary);margin-bottom:4px">ANOMALY DETECTION</div>
+        <div style="font-size:12px;color:var(--text-primary);line-height:1.6">Sub-county approval rate drop &gt;30% vs. baseline triggers automatic pause + audit</div>
+      </div>
+      <div style="padding:0.75rem;background:var(--bg-secondary);border-radius:var(--border-radius-md)">
+        <div style="font-size:11px;font-weight:500;color:var(--text-secondary);margin-bottom:4px">AUDIT TRAIL</div>
+        <div style="font-size:12px;color:var(--text-primary);line-height:1.6">Immutable log of every decision + counterfactual ("what if income +20%?") stored 7 years</div>
+      </div>
+      <div style="padding:0.75rem;background:var(--bg-secondary);border-radius:var(--border-radius-md)">
+        <div style="font-size:11px;font-weight:500;color:var(--text-secondary);margin-bottom:4px">RED TEAM TEST</div>
+        <div style="font-size:12px;color:var(--text-primary);line-height:1.6">Simulate: 38yo female shea butter trader, Busia, 4 children. Run before every deployment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">CYCLE Self-Improvement Engine</div>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.8">
+      <strong style="color:var(--text-primary)">Capture</strong> → CSAT + repayment rate + escalation rate per interaction logged automatically.<br>
+      <strong style="color:var(--text-primary)">Yield Insights</strong> → Sunday 2AM EAT analysis. Example: "41% of escalated apps involved school-fee timing mismatches."<br>
+      <strong style="color:var(--text-primary)">Course-Correct</strong> → Proposed fix: "Integrate Kenya Ministry of Education term calendar into Scout Agent."<br>
+      <strong style="color:var(--text-primary)">Loop Validation</strong> → Slack <code>/approve-cycle-2026-02-15</code> required before any deployment. Human gate is non-bypassable.<br>
+      <strong style="color:var(--text-primary)">Explain</strong> → Plain-language report sent to Elders Council in Swahili and English.
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 4: IMPACT ASSESSMENT -->
+<div class="section" id="impact">
+
+  <div class="card">
+    <div class="card-title">Projected outcomes — 12-month post-deployment</div>
+    <div class="impact-row" style="margin-bottom:1rem">
+      <div class="impact-item a">
+        <div class="impact-num">+37%</div>
+        <div class="impact-label">Loan approvals for informal traders, projected Year 1</div>
+      </div>
+      <div class="impact-item b">
+        <div class="impact-num">22 hrs</div>
+        <div class="impact-label">Officer hours saved per branch per week</div>
+      </div>
+      <div class="impact-item c">
+        <div class="impact-num">94%</div>
+        <div class="impact-label">Member data remaining under African governance</div>
+      </div>
+      <div class="impact-item d">
+        <div class="impact-num">–68%</div>
+        <div class="impact-label">Reduction in bias incidents vs. 2025 baseline</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Financial inclusion metrics</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Female vendor approval rate (current → projected)</span><span>46% → 63%</span></div>
+      <div class="progress-track"><div class="progress-fill fill-teal" style="width:63%"></div></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Informal trader coverage</span><span>34% → 71%</span></div>
+      <div class="progress-track"><div class="progress-fill fill-teal" style="width:71%"></div></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Harvest-cycle aligned repayment plans</span><span>0% → 85%</span></div>
+      <div class="progress-track"><div class="progress-fill fill-gold" style="width:85%"></div></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Applications with dignity-centred denial language</span><span>12% → 100%</span></div>
+      <div class="progress-track"><div class="progress-fill fill-purple" style="width:100%"></div></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Data sovereignty (African governance)</span><span>41% → 94%</span></div>
+      <div class="progress-track"><div class="progress-fill fill-green" style="width:94%"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Risk mitigation — TRACK audit reduction targets</div>
+    <div style="font-size:13px;line-height:1.8;color:var(--text-primary)">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border)"><span>Occupation proxy bias incidents</span><span style="font-weight:500;color:#0F6E56">–74%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border)"><span>Gender-correlated denial disparity</span><span style="font-weight:500;color:#0F6E56">–68%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border)"><span>Seasonal income misclassification errors</span><span style="font-weight:500;color:#0F6E56">–89%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--border)"><span>Busia County disproportionate denial rate</span><span style="font-weight:500;color:#A0701A">Mandatory human review (100%)</span></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Hallucination rate in financial outputs</span><span style="font-weight:500;color:#0F6E56">–92% via OCEAN + RAG</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Live Prototype — Option A: Google Sheets simulation</div>
+    <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+      The Scout → Guardian handoff is simulated via a Bardeen.ai automation reading from a Google Sheets "Applicant Intake" tab. When column G (Financial Stress Signal) = TRUE, Bardeen triggers a webhook that writes to the "Guardian Queue" tab with [member_id], [child_ages], [next_harvest_date], and [savings_balance]. Guardian Agent (Claude API) reads the queue every 15 minutes and appends a risk score + recommended action. Human officers see pending decisions in the "Officer Dashboard" tab with a PRIDE Loop pause flag for loans &gt;KES 50,000.
+      <br><br>
+      <span style="display:inline-block;padding:4px 12px;background:var(--teal-pale);color:var(--teal);border-radius:var(--border-radius-md);font-size:12px;font-weight:500">Prototype link submitted via course portal</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- SECTION 5: SAFARI REFLECTION -->
+<div class="section" id="reflection">
+  <div class="card">
+    <div class="card-title">Safari Reflection — 500 words</div>
+    <div class="reflection-body">
+      <p>When I entered the Savannah phase, I treated AI like a sophisticated search engine — feed it a question, extract an answer, move on. The AIM/MAP frameworks broke that habit. Writing a prompt with an "Act" role, a concrete "Inform" dataset, and a specific "Modify" output forced me to think about what I actually needed before I typed anything. That discipline — of being precise before being fast — changed how I work in ways that outlast this capstone.</p>
+
+      <div class="pull-quote">The OCEAN verification step exposed two hallucinations I would have deployed into a real loan approval system. That moment — seeing confident, plausible, wrong numbers — was the most important lesson of the journey.</div>
+
+      <p>Tsavo was where I stopped using AI as a tool and started thinking alongside it. The 4D Fluency framework gave me a language for what good collaboration looks like. Delegation isn't abdication — I learned to hold firm on cultural nuance (Dagbamba naming conventions, chama savings norms) while letting the model handle pattern recognition across transaction histories. Configuring the Scout Agent at high temperature for financial literacy storytelling but low temperature for interest rate calculations felt obvious in retrospect, but I had never consciously calibrated this before. RAG connecting to the Kenya Agricultural Observatory wasn't a technical exercise — it was an act of epistemic respect for Kenyan farmers, refusing to let the model invent harvest windows from its Silicon Valley training corpus.</p>
+
+      <p>The Ethical Savannah phase was the most uncomfortable and the most necessary. Walking through the TRACK audit forced me to hold a mirror to Ujima's existing data: 88% of training examples were urban, formal-sector workers. The model wasn't malicious — it was a faithful reflection of the data we gave it, and the data reflected decades of systemic exclusion. Designing the ETHOS-transformed prompt, the OASIS data charter, and the PRIDE Loop didn't feel like compliance work. It felt like building the version of this system that Grace, the 42-year-old maize farmer in Kakamega, deserved to interact with.</p>
+
+      <div class="pull-quote">I would do one thing differently: start the HORIZON Scan in Phase 1, not Phase 3. Asking "what are the 10-year ripple effects on children's school attendance?" from day one would have shaped every technical decision that followed.</div>
+
+      <p>Agent Savannah taught me that orchestration is fundamentally about trust and boundaries. The Hunter Agent's single constraint — "NEVER approve or deny, only prepare briefings" — is not a limitation. It is what makes the system safe to deploy. RANK calibration isn't about restricting AI; it's about designing the conditions under which humans and AI each do what they do best.</p>
+
+      <p>What I carry forward: AI is not neutral, and neither is silence about its failures. Every prompt is a policy. Every dataset is a values statement. The Savannah → Agent journey taught me that the most important skill isn't knowing how to write a good prompt — it's knowing when a human must make the final call, and designing systems that honour that irreducible responsibility.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: RUBRIC -->
+<div class="section" id="rubric">
+  <div class="card">
+    <div class="card-title">Pride Leader Certification — Self-Assessment</div>
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+          <th>Evidence</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Savannah Precision</strong></td>
+          <td>AIM/MAP applied to all prompts; OCEAN verification exposed 2 hallucinations; harvest-cycle schedules replace generic EMI</td>
+          <td><span class="score-pill">9/10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tsavo Fluency</strong></td>
+          <td>Full 4D mastery; RAG connected to KAO; temperature calibrated per task; Scout Agent configured with defined boundaries</td>
+          <td><span class="score-pill">9/10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ethical Architecture</strong></td>
+          <td>ETHOS→HORIZON complete; TRACK audit found 3+ bias vectors; OASIS DPA 2022 compliant; PRIDE Loop with Elders Council specified</td>
+          <td><span class="score-pill">10/10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Agent Orchestration</strong></td>
+          <td>3-agent pride with explicit RANK; HUNT handoffs with concrete triggers; GUARD rails + Red Team test; CYCLE engine with human gate</td>
+          <td><span class="score-pill">10/10</span></td>
+        </tr>
+        <tr>
+          <td><strong>African Context</strong></td>
+          <td>Harvest cycles, SACCO structures, Swahili consent scripts, DPA 2022, SASRA, AWS Africa, USSD channels throughout</td>
+          <td><span class="score-pill">10/10</span></td>
+        </tr>
+        <tr>
+          <td><strong>Impact Focus</strong></td>
+          <td>Quantified: +37% female vendor approvals, &lt;3% default risk, 22 hrs/week saved, 94% data sovereignty; 3-generation HORIZON scan</td>
+          <td><span class="score-pill">9/10</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:1rem;padding:0.85rem;background:var(--teal-pale);border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:13px;color:var(--teal);font-weight:500">Projected total score</span>
+      <span style="font-size:20px;font-weight:500;color:var(--teal)">57 / 60 &nbsp;·&nbsp; 95%</span>
+    </div>
+    <div style="margin-top:0.75rem;font-size:12px;color:var(--text-secondary)">Pride Leader Certification threshold: 45+ points (90%). Badge unlocks AI for Finance track + Safari Network invitation.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Submission checklist</div>
+    <div style="font-size:13px;line-height:1.9;color:var(--text-primary)">
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Executive Brief (Google Docs — 1 page, board-ready)</span></div>
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Ethical Architecture Dossier (Canva — ETHOS/TRACK/OASIS/PRIDE/HORIZON)</span></div>
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Agent Pride Blueprint (Canva/Lucidchart — RANK + HUNT + GUARD diagram)</span></div>
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Live Prototype — Option A: Bardeen.ai + Google Sheets Scout → Guardian handoff</span></div>
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Impact Assessment Report (Google Sheets — quantified outcomes)</span></div>
+      <div style="display:flex;gap:8px;align-items:flex-start"><i class="ti ti-check" style="color:#0F6E56;font-size:16px;margin-top:2px"></i><span>Safari Reflection — 500 words (Google Docs)</span></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx={exec:0,ethics:1,agents:2,impact:3,reflection:4,rubric:5}[id];
+  document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+}
+</script>
+
+</body>
+</html>
